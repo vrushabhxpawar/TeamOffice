@@ -1,24 +1,33 @@
 # Download Page
 The Download Page allows users to browse available software and documents. Users can request a download by filling out a form. After successful verification, an email containing the download link is sent automatically.
 
-## Features
-- Display available downloads
-- Category-wise listing
-- Download request form
-- Email verification using OTP
-- Mobile Number verification using OTP
-- Secure download links
-- Responsive design
+## Tech Stack : 
+- ASP.NET Core MVC
+- SQL Server
+- Bootstrap
+- jQuery
+- JavaScript
+- Ajax
 
-## Flow 
-- User visits Download Page
-- Selects a Software
-- Selects compatible to device software
-- Opens Request Form
-- Fills request form
-- Email & Mobile Verification
-- Form Submitted
-- Download Page ready
-  
-## Technology Used : 
-C#, ASP .Net core MVC, Bootstrap.
+## Folder Structure 
+- Controllers/
+- Models/
+  - Interface
+  - Repository
+- Services/
+  - EmailService
+  - SmsService
+- EmailTemplates/
+- ViewModels
+- Views/
+- wwwroot/
+
+## Download Controller 
+### Action Methods 
+
+1. SoftwareDownloadPage [HttpGet]
+2. InformationForm [HttpGet]
+3. InfomationForm [HttpPost]
+4. SendOTP [HttpPost]
+5. verifyOTP [HttpPost]
+
