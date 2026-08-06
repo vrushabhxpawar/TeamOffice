@@ -33,3 +33,8 @@ The Download Page allows users to browse available software and documents. Users
       - _Header.cshtml
       - _Footer.cshtml
 - wwwroot/
+    - css
+        - Stylesheet.css
+    - js
+        - Script.js
+    - html
