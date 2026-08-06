@@ -13,9 +13,9 @@ The Download Page allows users to browse available software and documents. Users
 - Controllers/
   - DownloadFormController.cs
 - Models/
-  - Interface
+  - Interface/
     - IDownloadRepository.cs
-  - Repository
+  - Repository/
     - DownloadRepository.cs
 - Services/
   - MailService.cs
