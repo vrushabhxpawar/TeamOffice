@@ -1,0 +1,373 @@
+﻿.fadeUp, .informationformContainer {
+    animation: fadeUp 0.8s ease-out forwards;
+}
+
+#scrollTopBtn {
+    position : fixed;
+    bottom : 30px; 
+    right : 20px;
+    height : 50px;
+    width : 50px;
+    display : none;
+    border-radius : 100%;
+    cursor : pointer;
+    z-index : 100;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+label {
+    cursor: pointer;
+}
+
+.software-card {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg,#ffffff,#f8faff);
+    border-radius: 20px;
+    padding: 20px 20px;
+    min-height: fit-content;
+    height: 230px; /**/
+    width : 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    box-shadow: 0 10px 20px #c1d1ea;
+    transition: transform .35s ease, box-shadow .35s ease;
+    color: navy;
+}
+
+.software-card:hover {
+    transform: translateY(10px);
+    cursor: pointer;
+}
+
+.card-body {
+    display : flex; 
+    justify-content : space-between;
+}
+
+.card {
+    transition: transform 0.2s ease;
+    max-height: 70px;
+    margin-bottom: 0.5rem;
+    box-shadow: 2px 2px 20px #c1d1ea;
+}
+
+.card:hover {
+    cursor: pointer;
+    transform: scale(1.01);
+}
+
+.software-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,.15);
+    cursor: pointer;
+}
+
+.software-card:hover::before {
+    opacity: 1;
+}
+
+.icon-circle,
+.software-card h6 {
+    position: relative;
+    z-index: 0;
+}
+
+/*.view-download {
+    font-size : 14px;
+    width : fit-content;
+    height : contain;
+    border-radius : 0.5rem;
+}*/
+
+/*.view-download:hover {
+    background-color: navy;
+    color: white;
+}*/
+
+.btn-download {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+    opacity: 1;
+    visibility: hidden;
+    transition: all .35s ease;
+    z-index: 2;
+    border-radius: 50px;
+    background: #0d6efd;
+    color: navy;
+    font-weight: 600;
+    min-width: 170px;
+    font-size: 15px;
+}
+
+.software-card:hover .btn-download {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%);
+}
+
+.btn-download:hover {
+    background: #16306f;
+    color: white;
+}
+
+#closeDownloads {
+    position: absolute;
+    margin-left: 0;
+    top: 1.2rem;
+    right: 1rem;
+    border: none;
+    background-color: transparent;
+    transition: transform 0.3s ease;
+    font-size: 10px;
+    font-weight: 500;
+    border-radius : 100%;
+    height : 30px;
+    width : 30px;
+}
+
+    #closeDownloads:hover {
+        transform: scale(1.15);
+        background-color: lightgray;
+        opacity : 0.55;
+    }
+
+.download-container {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    max-width: 1200px;
+    max-height: 85vh;
+    overflow-y: auto;
+    background: #fff;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 25px 80px rgba(0,0,0,.25);
+    z-index: 1050;
+}
+
+.download-container.show {
+        animation: popupOpen .35s ease forwards;
+    }
+
+.download-container.hide {
+        animation: popupClose .35s ease forwards;
+    }
+
+@keyframes popupOpen {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -45%) scale(.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes popupClose {
+    from {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: translate(-50%, -45%) scale(.95);
+    }
+}
+
+.download-card:hover {
+    transform: scale(1.02);
+}
+
+.download-card {
+    transition: transform 0.3s ease;
+}
+
+.verify {
+    display: none;
+}
+
+.form-container {
+    display: none;
+    position: fixed;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    max-width: 1200px;
+    height : fit-content;
+    max-height: 85vh;
+    overflow-y: auto;
+    background: #fff;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 25px 80px rgba(0,0,0,.25);
+    z-index: 1050;
+}
+
+.form-container.show {
+    animation: popupOpen .35s ease forwards;
+}
+
+.form-container.hide {
+    animation: popupClose .35s ease forwards;
+}
+
+
+.phone-input {
+    border: 1px solid #d9dee7;
+    border-radius: 6px;
+    box-shadow: none;
+    transition: .25s ease;
+}
+
+.iti {
+    width: 100%;
+}
+
+.iti__tel-input {
+    height: 38px !important;
+}
+
+.iti--separate-dial-code .iti__selected-country {
+    border-radius: 6px 0 0 6px;
+}
+
+.iti__selected-country {
+    border-right: 1px solid #d9dee7;
+}
+@media (max-width:768px) {
+
+    .main {
+        padding : 0 10px !important;
+    }
+    .container h2{
+        font-size : 24px;
+    }
+    .software-card {
+        width: 100%;
+        border-radius : 8px;
+    }
+    .download-container {
+        width: 95vw;
+        height: fit-content;
+    }
+    .download-header h4{
+        font-size : 15px;
+    }
+    .card {
+        width : 100%;
+        height :fit-content;
+        text-wrap : auto;
+    }
+    .form-btn {
+        height : fit-content;
+    }
+    .card h6 {
+        font-size : 12px;
+        text-wrap : wrap;
+        padding-right : 5px;
+    }
+    .card-body p {
+        font-size: 5px;
+        padding : 0;
+    }
+    .card-body a {
+        display : flex;
+        gap : 4px;
+    }
+    #org {
+        display : flex;
+        flex-direction : column;
+        gap : 10px;
+
+    }
+    .form-btn {
+        font-size : 12px;
+        height : 33px;
+    }
+    .form-container {
+        width : 95vw;
+        font-size : 16px;
+        padding : 15px 10px;
+    }
+    .form-container h4 {
+        font-size : 21px;
+        text-align : start;
+        margin-bottom : 15px;
+    }
+    .form-container label {
+        font-size : 16px;
+    }
+    .form-container input, textarea {
+        height: 35px;
+        width: 100%;
+        text-size-adjust: 88%;
+      }
+    .form-container button {
+        height : 35px !important;
+        width : 100% !important;
+        font-size : 14px;
+    }
+    .form-container a {
+        font-size: 14px;
+    }
+    #formSubmitBtn, #cancelBtn {
+        width: 50% !important;
+        justify-content: center;
+        align-items: center;
+    }
+    .otp-section {
+        display: flex;
+        flex-direction: column;
+        gap: 17px;
+    }
+}
+
+#toast-container > .toast-success {
+    background-color: #198754;
+    color: white;
+}
+
+#toast-container > .toast-error {
+    background-color: #dc3545;
+    color: white;
+}
+
+#toast-container > .toast-warning {
+    background-color: #ffc107;
+    color: black;
+}
+
+#toast-container > .toast-info {
+    background-color: #0dcaf0;
+    color: black;
+}
+.iti {
+    width: 100%;
+}
+.toast {
+    opacity: 1 !important;
+    position : relative;
+    top : 5rem;
+}

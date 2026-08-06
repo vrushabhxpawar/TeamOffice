@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <link rel="icon" type="image/x-icon" href="~/images/favicon.ico" asp-append-version="true">
+
+    <!-- Bootstrap CSS -->
+    <link href="~/lib/bootstrap/css/bootstrap-min.css" rel="stylesheet" />
+
+    <!--IntlInput-->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.12.1/build/css/intlTelInput.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.12.1/build/js/intlTelInput.min.js"></script>
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    @* <link href="~/lib/bootstrap/icons/bootstrap-icon.css" rel="stylesheet" /> *@
+
+    <!-- Toastr CSS -->
+    @* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"> *@
+    <link href="~/lib/toastr.css" rel="stylesheet" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="~/css/footer.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/header.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/styleSheet.css" asp-append-version="true" />
+
+    <!-- jQuery (Load only ONCE and before Toastr) -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- jQuery Unobtrusive Ajax -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery-ajax-unobtrusive@3.2.6/dist/jquery.unobtrusive-ajax.min.js"></script>
+
+    <!-- Toastr JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    @* <script src="~/lib/toastr-min.js"></script> *@
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Bootstrap JS Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript -->
+    <script src="~/js/Script.js" asp-append-version="true"></script>
+</head>
+
+<script>
+       toastr.options = {
+        newestOnTop: true,
+        positionClass: "toast-top-center",
+        timeOut: 4000,
+        showDuration: 300,
+        hideDuration: 300,
+        showMethod: "slideDown",
+        hideMethod: "fadeOut"
+    };
+</script>
+
+<body>
+    <partial name="_Header" />
+    @* <div style="background-color:navy; color:white;height:70px;align-items:center; display:flex;font-size:25px;padding:50px;">Home / Download</div> *@
+    <div>
+        @RenderBody()
+    </div>
+    <button id="scrollTopBtn" class="btn btn-primary shadow">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+    <partial name="_Footer" />
+</body>
+</html>
+
+<script>
+    const scrollToTop = document.getElementById("scrollTopBtn")
+
+    window.addEventListener("scroll", () => {
+        scrollToTop.style.display = window.scrollY > 300 ? "block" : "none";
+    })
+
+    scrollToTop.addEventListener("click", () => {
+        window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+    })
+</script>

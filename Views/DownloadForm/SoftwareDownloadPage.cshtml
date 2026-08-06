@@ -1,0 +1,319 @@
+﻿@model SoftwareCardViewModel;
+
+@{
+    ViewBag.Title = "Software Download Page";
+    }
+
+
+<!--Main Container-->
+<div class="main fadeUp px-5" style="width:100vw;">
+
+    <h2 class="mt-5" style="color:navy">Download Categories</h2>
+    <p style="color:gray">Tap a category to see its files, then hit download to open the request form.</p>
+
+    <div class="row">
+
+        @foreach (var item in Model.Cards)
+            {
+            <!-- Software Download Cards -->
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="software-card text-start view-download" data-title="@item.Title">
+
+                    <div class="icon-circle rounded-2 text-center align-content-center"
+                         style="width:50px;height:50px; background-color:#c1d1ea">
+                        <i class="bi @item.Icon fs-3"></i>
+                    </div>
+
+                    <h6 class="mt-4 fw-bolder">@item.Title</h6>
+                    <p style="font-size:14px;color:gray" class="text-start">@item.Description</p>
+                    <p style="font-size:14px;font-weight:500">@item.Downloads.Count Files <i class="bi bi-chevron-right"></i></p>
+                </div>
+            </div>
+            }
+
+        <!--Download Links PopUp-->
+
+        <div id="downloadContainer" class="download-container" style="color:navy">
+            <div class="download-header mb-4">
+                <h4>
+                    <i class="bi bi-display me-2"></i>Team Office Windows Software
+                    <p style="color:gray; font-size:15px;margin-top:5px;font-weight:400">Main and full setup for windows desktops</p>
+                </h4>
+                <button class="close-btn" id="closeDownloads">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+            <div id="downloadList"></div>
+        </div>
+
+        <!--Download Form-->
+        <div class="form-container">
+            <h4 class="" style="color:navy"><i class="bi bi-download"></i> Software Download Request</h4>
+            <form onsubmit="handleFormSubmit(event)">
+                @Html.AntiForgeryToken()
+
+                <input hidden id="SelectedLink" name="SelectedLink" />
+
+                <div class="row my-4 gx-5" id="org">
+
+                    <div class="col-md-6">
+                        <label for="OrganizationName" class="form-label fw-semibold">Organization Name</label>
+                        <input type="text"
+                               id="OrganizationName"
+                               maxlength="50"
+                               class="form-control"
+                               placeholder="Organization Name">
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <label for="OrganizationAddress" class="form-label fw-semibold">Organization Address</label>
+                        <textarea type="text"
+                                  rows="1"
+                                  maxlength="200"
+                                  id="OrganizationAddress"
+                                  class="form-control"
+                                  placeholder="Organization Address"></textarea>
+                    </div>
+
+                </div>
+
+                <!-- Email Row -->
+                <div class="row align-items-end g-2 mb-3">
+
+                    <!-- Email Input Section -->
+                    <div class="col-md-8" >
+                        <label for="emailInput" class="form-label fw-semibold">Email Address</label>
+                        <input type="email" id="emailInput" class="form-control" placeholder="Enter your email">
+                        <span class="text-success fw-medium emailVal fst-normal" id="successEmail"></span>
+                    </div>
+
+                    <div class="col-md-4">
+                        <button id="emailBtn"
+                                type="button"
+                                value="true"
+                                class="btn btn-success w-100"
+                                onclick="sendOTP('Email')">
+                            <i class="bi bi-send"></i>
+                            Send OTP
+                        </button>
+                    </div>
+
+                    <!-- Email OTP Section-->
+                    <div class="row align-items-end g-2 mb-3 otp-section" id="emailOtpBox" style="display:none;">
+                        <div class="col-md-8" style="max-height:38px;">
+                            <input type="number" id="emailOtpInput" class="form-control" placeholder="Enter OTP">
+                            <span id="emailOtpVal" class="text-danger fst-normal"></span>
+                        </div>
+
+                        <div class="col-md-4">
+                            <button type="button"
+                                    id="verifyEmailBtn"
+                                    class="btn btn-primary w-100"
+                                    onclick="verifyOTP('Email')">
+                                <i class="bi bi-check-circle"></i>
+                                    Verify Email
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <!--Phone Row-->
+                <div class="row align-items-end g-2 mb-3">
+                    <!--Phone Input Section-->
+                    <div class="col-md-8">
+                        <label for="mobileInput" class="form-label fw-semibold">Mobile Number</label>
+                        <input type="tel"
+                               id="mobileInput"
+                               class="form-control"
+                               placeholder="Enter Mobile number">
+                        <input type="hidden" id="CountryCode" name="CountryCode" />
+                        <span class="text-success fw-medium mobileVal fst-normal" id="successMobile"></span>
+                    </div>
+
+                    <div class="col-md-4">
+                        <button type="button"
+                                value="true"
+                                id="mobileBtn"
+                                class="btn btn-success w-100"
+                                onclick="sendOTP('Mobile')">
+                            <i class="bi bi-phone"></i>
+                            Send OTP
+                        </button>
+                    </div>
+
+                    <!--Phone OTP Section-->
+                    <div class="row align-items-end g-2 mb-3 otp-section" id="phoneOtpBox" style="display:none;">
+                        <div class="col-md-8" style="max-height:38px;">
+                            <input type="number" id="mobileOtpInput" class="form-control" placeholder="Enter OTP">
+                            <span id="mobileOtpVal" class="text-danger fst-italic"></span>
+                        </div>
+
+                        <div class="col-md-4">
+                            <button type="button"
+                                    id="verifyMobileBtn"
+                                    class="btn btn-primary w-100"
+                                    style=""
+                                    onclick="verifyOTP('Mobile')">
+                                <i class="bi bi-check-circle"></i>
+                                    Verify Phone
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Captcha-->
+                <div class="my-4">
+                    <label class="form-label fw-semibold" for="Captcha">
+                        Captcha Code
+                    </label>
+
+                    <dnt-captcha asp-captcha-generator-max="99"
+                                 asp-captcha-generator-min="1"
+                                 asp-captcha-generator-language="English"
+                                 asp-captcha-generator-display-mode="SumOfTwoNumbers"
+                                 asp-use-relative-urls="false"
+                                 asp-placeholder="Enter Captcha code"
+                                 asp-validation-error-message="Please enter the security code."
+                                 asp-font-name="Tahoma"
+                                 asp-font-size="20"
+                                 asp-fore-color="#333333"
+                                 asp-back-color="#ccc"
+                                 asp-text-box-class="text-box form-control"
+                                 asp-validation-message-class="text-danger"
+                                 asp-refresh-button-class="bi bi-arrow-repeat btn btn-md"
+                                 asp-show-refresh-button="true">
+                    </dnt-captcha>
+
+                </div>
+
+
+                <div class="text-center my-4 d-flex gap-3">
+
+                    <button type="submit"
+                            id="formSubmitBtn"
+                            class="btn btn-primary request d-flex gap-1">
+                        <i class="bi bi-download"></i>
+                        Request
+                    </button>
+
+                    <a class="btn btn-danger d-flex gap-1" id="cancelBtn" asp-action="SoftwareDownloadPage" asp-controller="DownloadForm">
+                        <i class="bi bi bi bi-x-lg"></i>
+                        Cancel
+                    </a>
+                </div>
+
+                <div class="text-center m-3">
+                    <span class="text-center "><i class="bi bi-info-circle"></i> Download link will be sent to your email after verification.</span>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+@* <div id="download-page" class="d-flex justify-content-center align-items-center">
+</div> *@
+
+<script>
+
+    const cards = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.Cards))
+
+        document.querySelectorAll(".view-download").forEach(card => {
+        card.addEventListener("click", function () {
+
+            const title = this.dataset.title;
+
+            const selectedCard = cards.find(c => c.Title == title);
+
+            displayDownloads(selectedCard.Downloads);
+        });
+    });
+
+        function displayDownloads(downloads) {
+
+        const downloadList = document.getElementById("downloadList");
+
+        downloadList.innerHTML = "";
+
+        downloads.forEach(item => {
+            downloadList.innerHTML += `
+               <div class="card mb-2">
+                <div class="card-body">
+                    <h6 style="color:navy;">${item.Title}</h6>
+                    <a class="btn btn-primary text-center form-btn" onclick="downloadLink('${item.Url}')"><i class="bi bi-download"> </i>Download</a>
+                </div>
+            </div>
+            `;
+        });
+    }
+
+        const downloadContainer = document.getElementById("downloadContainer");
+
+
+       document.querySelectorAll(".view-download").forEach(btn => {
+
+        btn.addEventListener("click", function (e) {
+
+            e.preventDefault()
+
+
+
+            downloadContainer.classList.remove("hide");
+            downloadContainer.style.display = "block";
+            downloadContainer.classList.add("show");
+
+            downloadContainer.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+        });
+
+        });
+
+        document.querySelectorAll(".btn-download").forEach(btn => {
+
+        btn.addEventListener("click", function (e) {
+
+            e.preventDefault();
+
+            downloadContainer.style.display = "block";
+
+        });
+
+    });
+
+     document.getElementById("closeDownloads").addEventListener("click", function () {
+
+        downloadContainer.classList.remove("show");
+        downloadContainer.classList.add("hide");
+
+        setTimeout(() => {
+        downloadContainer.style.display = "none";
+        downloadContainer.classList.remove("hide");
+    }, 350);
+    });
+
+       function downloadLink(link) {
+           document.querySelector(".download-container").style.display = "none";
+           document.querySelector(".form-container").classList.add("show");
+           document.querySelector(".form-container").style.display = "block";
+           document.getElementById("SelectedLink").value = link;
+       }
+
+    const input = document.querySelector("#mobileInput");
+
+    const iti = window.intlTelInput(input, {
+        initialCountry: "in",          // India by default
+        preferredCountries: ["in", "us", "gb"],
+        separateDialCode: true,
+        strictMode: true,
+        loadUtils: () =>
+            import("https://cdn.jsdelivr.net/npm/intl-tel-input@25.12.1/build/js/utils.js")
+    });
+
+</script>

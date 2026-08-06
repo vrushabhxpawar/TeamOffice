@@ -1,0 +1,45 @@
+﻿.navbar a {
+    font-size: 1rem;
+    transition : All 0.3s ease;
+}
+
+.navbar {
+    background: #fff;
+    box-shadow: 0 3px 12px rgba(0,0,0,.08);
+    padding: 12px 0;
+}
+
+.navbar-brand img {
+    height: 40px;
+}
+
+.nav-link {
+    font-weight: 500;
+    color: #333 !important;
+    margin: 0 8px;
+    transition: .3s;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: #0d6efd !important;
+}
+
+.nav-link.active {
+    color: #0d6efd !important;
+}
+
+.btn-register, .btn-login {
+    border: 2px solid #4f46e5;
+    background-color : navy;
+    color : white !important;
+    border-radius: 8px;
+    padding: 8px 22px !important;
+    font-weight: 500;
+}
+
+.btn-register:hover, .btn-login:hover {
+     background: #4338ca;
+     opacity: 0.85;
+     color: white !important;
+}
