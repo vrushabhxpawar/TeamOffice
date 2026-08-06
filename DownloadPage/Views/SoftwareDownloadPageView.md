@@ -25,5 +25,5 @@ Sytlesheet.css
 ### Related Views
 ThankYou.cshtml
 
-Notes
+### Notes
 The page displays download information only. Actual download links are emailed after successful request verification.
